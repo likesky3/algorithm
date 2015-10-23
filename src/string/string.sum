@@ -1,0 +1,13 @@
+@字符串哈希
+https://www.byvoid.com/blog/string-hash-compare
+Java自带的即为BKDR算法，在各种算法和编程实现上，效果最突出
+s[0]*31^(n-1) + s[1]*31^(n-2) + ... + s[n-1]
+h = h * 31 + s[i]
+31可以为任意的31，131，1313……
+
+@字符串匹配
+1) 多种匹配算法介绍：朴素和Rabin-Karp(hash)
+http://mingxinglai.com/cn/2013/08/pattern-match/
+2) sunday 算法主要原理
+http://www.cnblogs.com/lbsong/archive/2012/05/25/2518188.html
+http://blog.csdn.net/WINCOL/article/details/4795369

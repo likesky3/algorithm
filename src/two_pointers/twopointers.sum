@@ -1,0 +1,10 @@
+题型1：滑动窗口法
+滑动窗口法就是在滑动过程中要始终保持窗口需要满足的性质，关键是如何
+shrink left edge of window
+一般都是求满足某种性质的最大、最小值，用一个变量counter 来判断窗口是否已经达标，达标后伸缩窗口以求相应的最值
+minimum window substring
+longest with at most 2/k chars
+longest substring without repeating chars
+
+题型2： cycle detection (slow-fast)
+happy number, find duplicate, cycle linked list, mappingKTimes(int[] p, int[] a)

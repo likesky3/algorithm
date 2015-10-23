@@ -1,0 +1,2 @@
+What's the interface used for?
+Because it supports the basic operations that would allow a client programmer to iterate over any kind of data structure.
