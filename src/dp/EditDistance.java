@@ -1,4 +1,4 @@
-package org.professional.dp;
+package dp;
 
 public class EditDistance {
 	public int getLeastEditDistance(String s, String t, int deletionCost, int insertionCost, int substutitionCost) {

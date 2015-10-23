@@ -1,4 +1,4 @@
-package org.professional.dp;
+package dp;
 
 public class MaximalRectangle {
 	public static void main(String[] args) {

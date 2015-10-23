@@ -1,4 +1,4 @@
-package org.professional.dp;
+package dp;
 
 import static org.junit.Assert.*;
 

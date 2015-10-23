@@ -1,4 +1,4 @@
-package org.basic.datastructure;
+package iterator;
 
 import java.util.HashMap;
 import java.util.Iterator;

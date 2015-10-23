@@ -1,4 +1,4 @@
-package org.professional.dp;
+package dp;
 
 import org.junit.Test;
 

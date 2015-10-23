@@ -1,12 +1,12 @@
-package org.professional.dp;
+package dp;
 
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 
 import org.junit.Test;
-import org.professional.dp.FindMinCoins.CoinChoice;
-// 有可能存在多种解吗？
+
+import dp.FindMinCoins.CoinChoice;
 
 public class FindMinCoinsTest {
 	@Test
@@ -58,7 +58,7 @@ class FindMinCoins {
 			throw new Exception("Error input, combination should not be null");
 		}
 		
-		// dp[i] : 组成 i 需要的最少硬币数
+		// dp[i] : ?????? i ????????????????????????
 		// dp[i] = min(dp[i], dp[i - coins[j]] + 1);
 		int[] dp = new int[sum + 1];
 		dp[0] = 0;
@@ -112,7 +112,7 @@ class FindMinCoins {
 			throw new Exception("Error input, combination should not be null");
 		}
 		
-		// dp[i] : 组成 i 需要的最少硬币数
+		// dp[i] : ?????? i ????????????????????????
 		// dp[i] = min(dp[i], dp[i - coins[j]] + 1);
 		int[] dp = new int[sum + 1];
 		dp[0] = 0;

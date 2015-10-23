@@ -1,4 +1,4 @@
-package org.professional.dp;
+package dp;
 
 public class _WhiteBoard {
 	private enum InputEnum {

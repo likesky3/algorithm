@@ -1,4 +1,4 @@
-package org.basic.datastructure;
+package iterator;
 
 public class FibonacciGenerator {
 	public static void main(String[] args) {
