@@ -1,9 +1,9 @@
-Two pointersÊÇÖ¸Ò»´óÀàÎÊÌâ£¬²¢²»Ò»¶¨ÊÇÖ»ÓĞÁ½¸öÖ¸Õë£¬¿ÉÄÜÊÇthree pointer, 
-»òÕß²»ÊÇpointer¶øÊÇindex£¬ÊÇÒ»ÖÖ´¦Àíarray, list, stringµÄ³£ÓÃËã·¨ºÍ±à³Ì¼¼ÇÉ¡£
+Two pointersæ˜¯æŒ‡ä¸€å¤§ç±»é—®é¢˜ï¼Œå¹¶ä¸ä¸€å®šæ˜¯åªæœ‰ä¸¤ä¸ªæŒ‡é’ˆï¼Œå¯èƒ½æ˜¯three pointer, 
+æˆ–è€…ä¸æ˜¯pointerè€Œæ˜¯indexï¼Œæ˜¯ä¸€ç§å¤„ç†array, list, stringçš„å¸¸ç”¨ç®—æ³•å’Œç¼–ç¨‹æŠ€å·§ã€‚
 
-ÌâĞÍ1£º»¬¶¯´°¿Ú·¨£¬Á½¸öpointers´ÓÍ·Íùºó×ß
-»¬¶¯´°¿Ú·¨¾ÍÊÇÔÚ»¬¶¯¹ı³ÌÖĞÒªÊ¼ÖÕ±£³Ö´°¿ÚĞèÒªÂú×ãµÄĞÔÖÊ£¬¹Ø¼üÊÇÈçºÎshrink left edge of window
-Ò»°ã¶¼ÊÇÇóÂú×ãÄ³ÖÖĞÔÖÊµÄ×î´ó¡¢×îĞ¡Öµ£¬ÓÃÒ»¸ö±äÁ¿counter À´ÅĞ¶Ï´°¿ÚÊÇ·ñÒÑ¾­´ï±ê£¬´ï±êºóÉìËõ´°¿ÚÒÔÇóÏàÓ¦µÄ×îÖµ
+é¢˜å‹1ï¼šæ»‘åŠ¨çª—å£æ³•ï¼Œä¸¤ä¸ªpointersä»å¤´å¾€åèµ°
+æ»‘åŠ¨çª—å£æ³•å°±æ˜¯åœ¨æ»‘åŠ¨è¿‡ç¨‹ä¸­è¦å§‹ç»ˆä¿æŒçª—å£éœ€è¦æ»¡è¶³çš„æ€§è´¨ï¼Œå…³é”®æ˜¯å¦‚ä½•shrink left edge of window
+ä¸€èˆ¬éƒ½æ˜¯æ±‚æ»¡è¶³æŸç§æ€§è´¨çš„æœ€å¤§ã€æœ€å°å€¼ï¼Œç”¨ä¸€ä¸ªå˜é‡counter æ¥åˆ¤æ–­çª—å£æ˜¯å¦å·²ç»è¾¾æ ‡ï¼Œè¾¾æ ‡åä¼¸ç¼©çª—å£ä»¥æ±‚ç›¸åº”çš„æœ€å€¼
 Minimum Window Substring
 longest with at most 2/k chars
 Longest Substring Without Repeating Characters
@@ -18,7 +18,7 @@ Rotate List
 Substring with Concatenation of All Words
 Swap Nodes in Pairs
 
-ÌâĞÍ2£º cycle detection (slow-fast)£¬Á½¸öpointers´ÓÍ·Íùºó×ß
+é¢˜å‹2ï¼š cycle detection (slow-fast)ï¼Œä¸¤ä¸ªpointersä»å¤´å¾€åèµ°
 happy number, find duplicate, cycle linked list, mappingKTimes(int[] p, int[] a)
 
-ÌâĞÍ3£ºÁ½¸öpointers´ÓÁ½Í·ÍùÖĞ¼ä×ß
+é¢˜å‹3ï¼šä¸¤ä¸ªpointersä»ä¸¤å¤´å¾€ä¸­é—´èµ°

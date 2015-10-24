@@ -1,28 +1,28 @@
 --------BASIC CONCEPT--------
-1. hash±í´óĞ¡Ò»¶¨ÒªÎ»ËØÊı
+1. hashè¡¨å¤§å°ä¸€å®šè¦ä½ç´ æ•°
 
-2. ½â¾öhash ³åÍ»
+2. è§£å†³hash å†²çª
 >>separate chaining: 
 load factor <=1, 
-Ê¹ÓÃÁ´±íĞèÒª¸øĞÂµ¥Ôª·ÖÅäµØÖ·»áµ¼ÖÂËã·¨ĞÔÄÜ¼õÂı
+ä½¿ç”¨é“¾è¡¨éœ€è¦ç»™æ–°å•å…ƒåˆ†é…åœ°å€ä¼šå¯¼è‡´ç®—æ³•æ€§èƒ½å‡æ…¢
 
->>open addressing£¨probing hash table)
-how: ÒÀ´Î³¢ÊÔÎ»ÖÃh0(x), h1(x), h2(x)
+>>open addressingï¼ˆprobing hash table)
+how: ä¾æ¬¡å°è¯•ä½ç½®h0(x), h1(x), h2(x)
 hi(x) = (hash(x) + f(i)) mod TableSize
-ÏßĞÔÌ½²â·¨£ºf(i) = i
-Æ½·½Ì½²â·¨£ºf(i) = i * i, ÊµÏÖÊ±f(i) = f(i - 1) + 2 * i - 1±ÜÃâ³Ë·¨
+çº¿æ€§æ¢æµ‹æ³•ï¼šf(i) = i
+å¹³æ–¹æ¢æµ‹æ³•ï¼šf(i) = i * i, å®ç°æ—¶f(i) = f(i - 1) + 2 * i - 1é¿å…ä¹˜æ³•
 
 load factor < 0.5
 
 >> double hashing
-f(i) = i * hash2(x), hash2(x) µÄÖµ²»ÄÜÎª0£¬·ñÔòÎŞÒâÒå£¬
-ºÃµÄhash2(x)±ÈÈçR - x mod R, R ÎªĞ¡ÓÚTableSizeµÄËØÊı
-double hashing ÔÚÀíÂÛÉÏ±È½ÏÓĞÎüÒıÁ¦£¬Êµ¼ÊÖĞÆ½·½Ì½²â·¨¼òµ¥¿ìËÙ
+f(i) = i * hash2(x), hash2(x) çš„å€¼ä¸èƒ½ä¸º0ï¼Œå¦åˆ™æ— æ„ä¹‰ï¼Œ
+å¥½çš„hash2(x)æ¯”å¦‚R - x mod R, R ä¸ºå°äºTableSizeçš„ç´ æ•°
+double hashing åœ¨ç†è®ºä¸Šæ¯”è¾ƒæœ‰å¸å¼•åŠ›ï¼Œå®é™…ä¸­å¹³æ–¹æ¢æµ‹æ³•ç®€å•å¿«é€Ÿ
 
 3. rehashing
-Ñ¡Ôñ´óÓÚÔ­±í´óĞ¡Á½±¶µÄµÚÒ»¸öËØÊı
+é€‰æ‹©å¤§äºåŸè¡¨å¤§å°ä¸¤å€çš„ç¬¬ä¸€ä¸ªç´ æ•°
 
-4. extensible hashing£ºÁªÏëBÊ÷£¬Õë¶ÔÊı¾İºÜ´óÎŞ·¨×°½øÄÚ´æµÄÇé¿ö
+4. extensible hashingï¼šè”æƒ³Bæ ‘ï¼Œé’ˆå¯¹æ•°æ®å¾ˆå¤§æ— æ³•è£…è¿›å†…å­˜çš„æƒ…å†µ
 
 --------HINTS--------
 1. When you are required O(N) time complexity with some unordered things, try hash.

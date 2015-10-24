@@ -1,13 +1,13 @@
-@×Ö·û´®¹şÏ£
+@å­—ç¬¦ä¸²å“ˆå¸Œ
 https://www.byvoid.com/blog/string-hash-compare
-Java×Ô´øµÄ¼´ÎªBKDRËã·¨£¬ÔÚ¸÷ÖÖËã·¨ºÍ±à³ÌÊµÏÖÉÏ£¬Ğ§¹û×îÍ»³ö
+Javaè‡ªå¸¦çš„å³ä¸ºBKDRç®—æ³•ï¼Œåœ¨å„ç§ç®—æ³•å’Œç¼–ç¨‹å®ç°ä¸Šï¼Œæ•ˆæœæœ€çªå‡º
 s[0]*31^(n-1) + s[1]*31^(n-2) + ... + s[n-1]
 h = h * 31 + s[i]
-31¿ÉÒÔÎªÈÎÒâµÄ31£¬131£¬1313¡­¡­
+31å¯ä»¥ä¸ºä»»æ„çš„31ï¼Œ131ï¼Œ1313â€¦â€¦
 
-@×Ö·û´®Æ¥Åä
-1) ¶àÖÖÆ¥ÅäËã·¨½éÉÜ£ºÆÓËØºÍRabin-Karp(hash)
+@å­—ç¬¦ä¸²åŒ¹é…
+1) å¤šç§åŒ¹é…ç®—æ³•ä»‹ç»ï¼šæœ´ç´ å’ŒRabin-Karp(hash)
 http://mingxinglai.com/cn/2013/08/pattern-match/
-2) sunday Ëã·¨Ö÷ÒªÔ­Àí
+2) sunday ç®—æ³•ä¸»è¦åŸç†
 http://www.cnblogs.com/lbsong/archive/2012/05/25/2518188.html
 http://blog.csdn.net/WINCOL/article/details/4795369
