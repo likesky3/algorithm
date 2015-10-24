@@ -1,5 +1,7 @@
-1 hash表大小一定要位素数
-2 解决hash 冲突
+--------BASIC CONCEPT--------
+1. hash表大小一定要位素数
+
+2. 解决hash 冲突
 >>separate chaining: 
 load factor <=1, 
 使用链表需要给新单元分配地址会导致算法性能减慢
@@ -17,7 +19,11 @@ f(i) = i * hash2(x), hash2(x) 的值不能为0，否则无意义，
 好的hash2(x)比如R - x mod R, R 为小于TableSize的素数
 double hashing 在理论上比较有吸引力，实际中平方探测法简单快速
 
-3 rehashing
+3. rehashing
 选择大于原表大小两倍的第一个素数
 
-4 extensible hashing：联想B树，针对数据很大无法装进内存的情况
+4. extensible hashing：联想B树，针对数据很大无法装进内存的情况
+
+--------HINTS--------
+1. When you are required O(N) time complexity with some unordered things, try hash.
+

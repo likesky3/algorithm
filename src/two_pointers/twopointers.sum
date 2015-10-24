@@ -1,10 +1,24 @@
-题型1：滑动窗口法
-滑动窗口法就是在滑动过程中要始终保持窗口需要满足的性质，关键是如何
-shrink left edge of window
-一般都是求满足某种性质的最大、最小值，用一个变量counter 来判断窗口是否已经达标，达标后伸缩窗口以求相应的最值
-minimum window substring
-longest with at most 2/k chars
-longest substring without repeating chars
+Two pointers是指一大类问题，并不一定是只有两个指针，可能是three pointer, 
+或者不是pointer而是index，是一种处理array, list, string的常用算法和编程技巧。
 
-题型2： cycle detection (slow-fast)
+题型1：滑动窗口法，两个pointers从头往后走
+滑动窗口法就是在滑动过程中要始终保持窗口需要满足的性质，关键是如何shrink left edge of window
+一般都是求满足某种性质的最大、最小值，用一个变量counter 来判断窗口是否已经达标，达标后伸缩窗口以求相应的最值
+Minimum Window Substring
+longest with at most 2/k chars
+Longest Substring Without Repeating Characters
+
+Implement strStr()
+Remove Duplicates from Sorted Array & II
+Remove Duplicates from Sorted List & II
+Remove Element
+Remove Nth Node From End of List
+Reverse Linked Llist II
+Rotate List
+Substring with Concatenation of All Words
+Swap Nodes in Pairs
+
+题型2： cycle detection (slow-fast)，两个pointers从头往后走
 happy number, find duplicate, cycle linked list, mappingKTimes(int[] p, int[] a)
+
+题型3：两个pointers从两头往中间走

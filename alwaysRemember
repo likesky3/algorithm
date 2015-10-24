@@ -1,1 +1,14 @@
-First work, then optimize. 
+>>Why study algs and performance?
+-the feasible vs infeasible
+-a clear way of thinking about things
+-algorithm is like money or currency in economics(wouldn't you rather have food or water or shlter or whatever)
+-it's tons of fun
+
+>>First work, then optimize. 
+
+>>After solving a problem, please check these questions:
+What data structure and algorithm has been used ?
+What's the time and space complexity?
+Can you think of other methods to solve it?
+Can you come up some follow ups, how to solve them ?
+	-min v.s max, 2sum -> 6sum

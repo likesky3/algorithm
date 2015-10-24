@@ -1,2 +1,7 @@
 What's the interface used for?
 Because it supports the basic operations that would allow a client programmer to iterate over any kind of data structure.
+
+迭代器模式
+假如有一个求和的函数sum，我们希望它能应用于链表，数组，二叉树等等不同的数据结构。
+这时，我们可以抽象出迭代器(Iterator)的概念，通过迭代器把算法和数据结构解耦了，使得通用算法能应用于不同类型的数据结构。
+我们可以把sum函数定义为: int sum(Iterator iter)
