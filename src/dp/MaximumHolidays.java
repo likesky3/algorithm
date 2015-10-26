@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-// category: schedule
+// Category: schedule.
 public class MaximumHolidays {
 
 	@Test
@@ -39,8 +39,7 @@ public class MaximumHolidays {
 	public int maxHolidays(int[][] dist, int[][] holidays, int maxDistAllowedInOneWeek) {
 		if (dist == null || holidays == null) return 0;
 		int m = holidays.length, n = dist.length;
-		// local[i][j], max holidays get from the first i weeks, work among the first j cities, 
-		// and the last week working at the (j - 1)th city (count start from 0)
+		// local[i][j], max holidays get from the first i weeks, and in the (i-1)th week working at the (j-1)th city(count start from 0).
 		int[][] local = new int[m + 1][n + 1];
 		for (int i = 1; i <= m; i++) {
 			for (int j = 1; j <= n; j++) {
@@ -65,8 +64,7 @@ public class MaximumHolidays {
 	public int maxHolidays2(int[][] dist, int[][] holidays, int maxDistAllowedInOneWeek) {
 		if (dist == null || holidays == null) return 0;
 		int m = holidays.length, n = dist.length;
-		// local[i][j], max holidays get from the first i + 1 weeks, work among the first j + 1 cities, 
-		// and the last week working at the jth city (count start from 0)
+		// local[i][j], max holidays get from the first i + 1 weeks, and in the ith week working at the jth city (count start from 0).
 		int[][] local = new int[m][n];
 		for (int i = 0; i < n; i++) {
 			local[0][i] = holidays[0][i];
@@ -94,7 +92,6 @@ public class MaximumHolidays {
 		if (dist == null || isHoliday == null) return 0;
 		int m = isHoliday.length, n = dist.length; // m: total days, n: total cities
 		int[][] dp = new int[m][n]; // dp[i][j], max holiday got when day i in city j
-		// init
 		for (int i = 0; i < leastRemainSame; i++) {
 			for (int j = 0; j < n; j++) {
 				if (i > 0) {
@@ -105,7 +102,6 @@ public class MaximumHolidays {
 			}
 		}
 		
-		// induction
 		for (int i = leastRemainSame; i < m; i++) {
 			for (int j = 0; j < n; j++) {
 				dp[i][j] += isHoliday[i][j] ? 1 : 0;
@@ -134,7 +130,6 @@ public class MaximumHolidays {
 		if (dist == null || isHoliday == null) return 0;
 		int m = isHoliday.length, n = dist.length; // m: total days, n: total cities
 		int[][] dp = new int[m][n]; // dp[i][j], max holiday got when day i in city j
-		// init
 		for (int i = 0; i < leastRemainSame; i++) {
 			for (int j = 0; j < n; j++) {
 				if (assign[i] >= 0 && assign[i] != j) {
@@ -149,7 +144,6 @@ public class MaximumHolidays {
 			}
 		}
 		
-		// induction
 		for (int i = leastRemainSame; i < m; i++) {
 			for (int j = 0; j < n; j++) {
 				if (assign[i] >= 0 && assign[i] != j) {
@@ -224,4 +218,5 @@ public class MaximumHolidays {
 		}
 		return result;
 	}
+	
 }

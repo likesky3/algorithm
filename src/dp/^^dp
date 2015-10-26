@@ -1,0 +1,33 @@
+>>使用场景
+存在重复子问题
+
+>>key elements
+递推变量+递推公式+初始条件
+递推变量：中间值、子问题的解、子状态
+求什么？ 为了求解目标，过程中需要记录什么信息？
+状态是什么？如何表达当前状态？状态如何转移？
+
+>>经典题型
+@背包问题
+0-1背包，完全背包，混合背包，泛化物品……
+max/min:栈顶取硬币问题；最小调整代价
+组合数：买水果问题
+判断：interleaving string
+
+@调度问题
+sell & buy stock （使用两个dp变量提供效率）
+maximum holidays
+pipeline schedule
+
+@bitset
+包含车牌号的最短单词，
+词典中无重复字母且长度乘积最长的单词对
+
+@记忆式搜索：DFS/backtracing + DP
+flip game II, 2-9 game
+锯木头问题, Different Ways to Add Parentheses
+
+>>follow ups
+输出所有或特定解决方案：记录状态是如何变迁的，利用状态变迁信息进行回溯
+最少平方数加和，输出背包方案，输出字典序最大、最小的背包方案
+
