@@ -16,7 +16,6 @@ public class LongestIncreasingContinuousSubsequence {
     }
     // Method 1: dp, time: O(n), space: O(1)
 	public int longestIncreasingContinuousSubsequence(int[] A) {
-        // Write your code here
         if (A == null || A.length == 0) return 0;
         int asendLen = 1, desendLen = 1;
         int asendLast = A[0], desendLast = A[0];
@@ -42,7 +41,6 @@ public class LongestIncreasingContinuousSubsequence {
     }
 	// Method 2: in a more dp style, time: O(n), space: O(n)
     public int longestIncreasingContinuousSubsequence2(int[] A) {
-        // Write your code here
         if (A == null || A.length == 0) return 0;
         int n = A.length;
         int[] asend = new int[n]; // asend[i], LICS ending at the ith num 
@@ -58,6 +56,25 @@ public class LongestIncreasingContinuousSubsequence {
         }
         result = Math.max(result, asend[n - 1]);
         result = Math.max(result, desend[n - 1]);
+        return result;
+    }
+    // Version 2 of Method 2
+    public int longestIncreasingContinuousSubsequence3(int[] A) {
+        if (A == null || A.length == 0) return 0;
+        int n = A.length;
+        int[] asend = new int[n]; // asend[i], LICS ending at the ith num 
+        int[] desend = new int[n];
+        asend[0] = 1;
+        desend[0] = 1;
+        int result = 1;
+        for (int i = 1; i < n; i++) {
+            asend[i] = A[i] >= A[i - 1] ? (asend[i - 1] + 1) : 1;
+            desend[i] = A[i] <= A[i - 1] ? (desend[i - 1] + 1) : 1;
+        }
+        for (int i = 0; i < n; i++) {
+            result = Math.max(result, asend[i]);
+            result = Math.max(result, desend[i]);
+        }
         return result;
     }
 }
