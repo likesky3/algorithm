@@ -86,7 +86,7 @@ public class WordLadderII {
 }
 
 /**
-visited�ǵ�ǰ���bfs�������ĵ��ʣ�һ������꣬��dict��ɾ��visited, ��ͼ�о��Ǳ��Ϊ�ѷ��ʣ��´��ٱ�����ʱ������
-currLevelSize�ǵø��£�
-����Set.add()��������ֵ���������ظ�Ԫ�ؽ�queue
+visited是当前这层bfs遍历到的单词，一层遍历完，从dict中删除visited, 在图中就是标记为已访问，下次再被访问时跳过；
+currLevelSize记得更新；
+利用Set.add()操作返回值避免添加重复元素进queue
  * */

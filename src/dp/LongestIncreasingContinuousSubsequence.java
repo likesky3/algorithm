@@ -66,11 +66,11 @@ public class LongestIncreasingContinuousSubsequence {
         int[] desend = new int[n];
         asend[0] = 1;
         desend[0] = 1;
-        int result = 1;
         for (int i = 1; i < n; i++) {
             asend[i] = A[i] >= A[i - 1] ? (asend[i - 1] + 1) : 1;
             desend[i] = A[i] <= A[i - 1] ? (desend[i - 1] + 1) : 1;
         }
+        int result = 1;
         for (int i = 0; i < n; i++) {
             result = Math.max(result, asend[i]);
             result = Math.max(result, desend[i]);
