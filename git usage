@@ -1,3 +1,4 @@
 http://shihlei.iteye.com/blog/2124411
 
-如果要在eclipse中checkout一个git project，需要提交整个project，特别注意加上 .project
+If you want to checkout a project from git to eclipse, commit the whole project, 
+especially not ignore .project, .classpath 
