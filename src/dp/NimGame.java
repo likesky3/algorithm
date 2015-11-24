@@ -37,4 +37,9 @@ public class NimGame {
             }
         }
     }
+    
+    //Version 3, O(1). Theorem: all 4s shall be false
+    public boolean canWinNim3(int n) {
+        return n % 4 != 0;
+    }
 }
