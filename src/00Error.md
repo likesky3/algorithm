@@ -8,3 +8,7 @@
 #####没有明确前条件（初始条件）
 Minimum Depth of Binary Tree, 初值应该是整数最大值而不是1.
 Binary Tree Maximum Path Sum, 初值应设为最小整数而非0.
+
+#####常见边界条件
+1. 最大值、最小值测试
+Valid Binary Search Tree, 边界值需要使用Long类型的极值
