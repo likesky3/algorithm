@@ -12,3 +12,6 @@ Binary Tree Maximum Path Sum, 初值应设为最小整数而非0.
 #####常见边界条件
 1. 最大值、最小值测试
 Valid Binary Search Tree, 边界值需要使用Long类型的极值
+
+2. 空指针
+Flatten Binary Tree to A Linked List
