@@ -13,4 +13,5 @@ DFS, 递归，回溯，贪婪。主体思路是正确的，调试很久的两个
 另外，借助判断返回值可尽早结束。  
 此题有另一种思路，尚未理解其正确性。  
 
-
+* Number of Islands
+DFS, BFS, Union-Find 使用Union-Find时，debug了很久，原因是union函数关键处写错了，比对代码时竟然都没看出来。
