@@ -13,12 +13,15 @@ DFS, 递归，回溯，贪婪。主体思路是正确的，调试很久的两个
 另外，借助判断返回值可尽早结束。  
 此题有另一种思路，尚未理解其正确性。  
 
-* Number of Islands
+* Number of Islands  
 DFS, BFS, Union-Find. 其中Union-Find的union函数写错debug了很长时间，直接对比正确code的时候都没识别出来写错的地方。
 union是将两个root进行union，而不是当前具体元素，若仅union了非根元素，会导致重复union，此题中进而导致count计算不正确。
 
-* Longest Increasing Path in a Matrix
+* Longest Increasing Path in a Matrix  
 DFS, Memoization. 没有使用cache数组，此题要超时。*搜索类题目，总要想想能否借助缓存提高性能，所谓记忆式搜索*
 
 * Clone Graph
 递归时要检查是否会死循环而导致栈溢出。
+
+* Course Schedule  
+Toplogic Sort。 图的表示，可以用二维数组，也可以用Adjacent List.
