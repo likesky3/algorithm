@@ -19,3 +19,6 @@ union是将两个root进行union，而不是当前具体元素，若仅union了�
 
 * Longest Increasing Path in a Matrix
 DFS, Memoization. 没有使用cache数组，此题要超时。*搜索类题目，总要想想能否借助缓存提高性能，所谓记忆式搜索*
+
+* Clone Graph
+递归时要检查是否会死循环而导致栈溢出。
