@@ -25,3 +25,9 @@ DFS, Memoization. 没有使用cache数组，此题要超时。*搜索类题目�
 
 * Course Schedule  
 Toplogic Sort。 图的表示，可以用二维数组，也可以用Adjacent List.
+
+* Intersection of Two Linked Lists  
+体会不需要计算length的思路，我即使理解了思路coding也没对。
+
+* Insertion Sort List  
+Memory Limit Exceed。某些case代码会死循环，链表类题目，如果存在圈就可能死循环。
