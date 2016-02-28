@@ -1,3 +1,4 @@
+### DFS
 * Remove Invalid Parentheses  
 DFS, 递归  
 技巧：  
@@ -31,3 +32,7 @@ Toplogic Sort。 图的表示，可以用二维数组，也可以用Adjacent Lis
 
 * Insertion Sort List  
 Memory Limit Exceed。某些case代码会死循环，链表类题目，如果存在圈就可能死循环。
+
+###DP
+* Coin Change  
+出错原因：之所以错是因为限制了子递归调用可用的coin类型，对于case [3,7,405,436] 8839，首次计算amount=24时，p = 0，因此得到dp[24] = 8，而dp[i]一旦计算出来后不再更新。要保证任何时候计算amount的时候，所有coins都可用。
