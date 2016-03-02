@@ -19,6 +19,7 @@ Given 2 numbers, 2 * 4 = 8
 Given 3 numbers, C(3, 2) * 2 * 4 * 8 = 192
 Given 4 numbers, C(4, 1) * 2 * 4 * 192 = 6144
 */
+// not finish yet
 public class Get24_2 {
 
 	public static void main(String[] args) {
@@ -94,7 +95,22 @@ public class Get24_2 {
 				if (A.equals(B))
 					continue;
 				double valB = map2Nums.get(B);
-				if (Math.abs())
+				if (Math.abs(valA + valB - 24) < epsilon) {
+					result.add("(" + A + ")+(" + B + ")");
+					result.add("(" + B + ")+(" + A + ")");
+				}
+				if (Math.abs(valA - valB - 24) < epsilon) {
+					result.add("(" + A + ")-(" + B + ")");
+					result.add("(" + B + ")-(" + A + ")");
+				}
+				if (Math.abs(valA * valB - 24) < epsilon) {
+					result.add("(" + A + ")*(" + B + ")");
+					result.add("(" + B + ")*(" + A + ")");
+				}
+				if (Math.abs(valA / valB - 24) < epsilon) {
+					result.add("(" + A + ")/(" + B + ")");
+					result.add("(" + B + ")/(" + A + ")");
+				}
 			}
 		}
 			
