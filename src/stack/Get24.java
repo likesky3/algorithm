@@ -12,34 +12,35 @@ import java.util.Set;
  * Given 4 numbers, print all expressions getting result 24 using +, -, *, /, (, ).
 For example, 8 8 3 3 => (8 / ( 3 - 8/3)) = 24,
 2 2 6 6 => ((2+6)*6/2) = 24, ((2+6)/(2/6)) = 24, ...
-
 hint1: calculate how large the possible solution can be?
 hint2: one way to solve is to try reverse polish notation.
-
  * my idea: enum all the possible patterns, verify each one, 
  * if correct, translate to expressions and add to the result.
  * 
  * hard points:
  * how to enum all this patterns
  * how to calculate 8383/-/ to 24
- * 
+ * deduplicate
+ * each operator can be used as any times 
 */
-// Not done yet. operators can be duplicate
+// Method 1
 public class Get24 {
     public static void main(String[] args) {
         Get24 obj = new Get24();
         obj.get24(new int[]{2, 2, 6, 6});
     }
-    private static String[] operators = {"+", "-", "*", "/"};
+    
     public List<String> get24(int[] nums) {
         Arrays.sort(nums);
-        List<String> result = new ArrayList<>();
+        
         // enum RPN expressions
         List<String[]> rpns = new ArrayList<>();
         enumRPNs(nums, rpns, 7);
         
-        // valid and eval RPN, if 24, translate to normal expression
+        // valid and eval RPN, if 24, translate to inorder expression
+        List<String> result = new ArrayList<>();
         eval(rpns, result);
+        
         for (String s : result) {
             System.out.println(s);
         }
@@ -83,7 +84,7 @@ public class Get24 {
         }
         for (int i = 0; i < cands.size(); i++) {
             if (cands.get(i).equals("#")) {
-                for (String op : operators) {
+                for (String op : ops) {
                     item[p] = op;
                     cands.remove(i);
                     recur(rpns, cands, item, p + 1);
@@ -115,9 +116,11 @@ public class Get24 {
             for (String s : rpn) {
                 sb.append(s);
             }
-            double ans = evalRPN(rpn);
-            if (Math.abs(ans - 24) < epsilon && set.add(sb.toString())) {
-                result.add(translate(rpn));
+            if (set.add(sb.toString())) { // deduplicate
+	            double ans = evalRPN(rpn);
+	            if (Math.abs(ans - 24) < epsilon) {
+	                result.add(translate(rpn));
+	            }
             }
         }
     }
