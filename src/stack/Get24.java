@@ -22,10 +22,10 @@ import java.util.Set;
  * hard points: 
  * how to enum all this patterns 
  * how to calculate 8383/-/ to 24
- * deduplicate: where it comes from?!!!!!!!!!!!!!! 
+ * deduplicate
  * each operator can be used as any times
  * 
- * questions to interviewers: is ((2*6)+(6*2)) and ((6*2)+(6*2)) same ?
+ * questions to interviewers: is ((2*6)+(6*2)) and ((6*2)+(6*2)) same ? -no.
  */
 // Method 1
 public class Get24 {
@@ -51,9 +51,9 @@ public class Get24 {
 		for (int i = 0; i < 3; i++)
 			cands.add("#");
 		boolean[] visited = new boolean[cands.size()];
-		String[] item = new String[cands.size()];
+		String[] items = new String[cands.size()];
 		Set<String> validRPNs = new HashSet<>();
-		enumRPNs(validRPNs, cands, visited, item, 0);
+		enumRPNs(validRPNs, cands, visited, items, 0);
 		
 		List<String> result = new ArrayList<>();
 		result.addAll(validRPNs);
@@ -64,26 +64,26 @@ public class Get24 {
 	}
 
 	private void enumRPNs(Set<String> validRPNs, List<String> cands, boolean[] visited,
-			String[] item, int p) {
-		if (p == item.length) {
-			eval(item, validRPNs);
+			String[] items, int p) {
+		if (p == items.length) {
+			eval(items, validRPNs);
 			return;
 		}
 		for (int i = 0; i < cands.size(); i++) {
 			if (visited[i]) continue;
 			if (cands.get(i).equals("#")) {
 				for (String op : ops) {
-					item[p] = op;
+					items[p] = op;
 //					cands.remove(i);
 					visited[i] = true;
-					enumRPNs(validRPNs, cands, visited, item, p + 1);
+					enumRPNs(validRPNs, cands, visited, items, p + 1);
 					visited[i] = false;
 //					cands.add(i, "#");
 				}
 			} else {
-				item[p] = cands.get(i);
+				items[p] = cands.get(i);
 				visited[i] = true;
-				enumRPNs(validRPNs, cands, visited, item, p + 1);
+				enumRPNs(validRPNs, cands, visited, items, p + 1);
 				visited[i] = false;
 			}
 		}
@@ -126,6 +126,8 @@ public class Get24 {
 				if (stack.size() < 2)
 					return 0;
 				double num2 = stack.pop();
+				if (Math.abs(num2) <1e-9)
+				    continue;
 				double num1 = stack.pop();
 				stack.push(num1 / num2);
 				break;
@@ -164,6 +166,7 @@ public class Get24 {
  * remove used items. Notice that remove/add for ArrayList is O(n). So a better
  * way is to use an bool[] used array to record used situation.
  * You first enumerates all RPNs, then eval all RPNs. It might take much memory. So one
- * improvement can be eval immediately after enumerating one RPN. Notice div 0
- * when eval / operation.
+ * improvement can be eval immediately after enumerating one RPN. 
+ * 
+ * Notice div 0 when eval / operation.
  */
