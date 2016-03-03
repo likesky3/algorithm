@@ -18,8 +18,12 @@ hint2: one way to solve is to try reverse polish notation.
 Given 2 numbers, 2 * 4 = 8
 Given 3 numbers, C(3, 2) * 2 * 4 * 8 = 192
 Given 4 numbers, C(4, 1) * 2 * 4 * 192 = 6144
+
+idea: first permulate number, then select operators
+E2 # E2: (a # b) # (c # d)
+a # E3: a # (b # (c # d)), a # ((b # c) # d)
+E3 # a: (a # (b # c)) # d, ((a # b) # c) # d
 */
-// not finish yet
 public class Get24_2 {
 
 	public static void main(String[] args) {
@@ -30,90 +34,109 @@ public class Get24_2 {
 	}
 	
 	public List<String> get24(int[] nums) {
-		List<Integer> cands = new ArrayList<>();
 		Arrays.sort(nums);
-		for (int num : nums) cands.add(num);
-		List<String> result = new ArrayList<>();
-		for (int i = 0; i < nums.length; i++) {
-			if (i > 0 && nums[i] == nums[i - 1])
-				continue;
-			cands.remove(i);
-			Map<String, Double> map2Nums = new HashMap<String, Double>();
-			Map<String, Double> map3Nums = new HashMap<String, Double>();
-			enum3Nums(nums, map2Nums, map3Nums, cands);
-			eval(nums[i], map2Nums, map3Nums, result);
-			cands.add(i, nums[i]);
-		}
+		boolean[] visited = new boolean[4];
+		int[] perm = new int[nums.length];
+		Set<String> result = new HashSet<>();
+		helper(nums, 0, visited, perm, result);
 		for (String s : result) {
 			System.out.println(s);
 		}
-		return result;
+		List<String> resultList = new ArrayList<>();
+		resultList.addAll(result);
+		return resultList;
 	}
 	
-	private void enum3Nums(int[] nums, Map<String, Double> map2Nums,
-			Map<String, Double> map3Nums, List<Integer> cands) {
-		for (int i = 0; i < cands.size(); i++) {
-			if (i > 0 && cands.get(i) == cands.get(i - 1))
-				continue;
-			int num3 = cands.get(i);
-			cands.remove(i);
-			int num1 = cands.get(0);
-			int num2 = cands.get(1);
-			enum2Nums(num1, num2, map2Nums); 
-			for (String twoNumExpr : map2Nums.keySet()) {
-				double twoNumVal = map2Nums.get(twoNumExpr);
-				map3Nums.put("" + num3 + "+(" + twoNumExpr + ")", num3 + twoNumVal);
-				map3Nums.put("(" + twoNumExpr + ")+" + num3, twoNumVal + num3);
-				map3Nums.put("" + num3 + "-(" + twoNumExpr + ")", num3 - twoNumVal);
-				map3Nums.put("(" + twoNumExpr + ")-" + num3, twoNumVal - num3);
-				map3Nums.put("" + num3 + "*(" + twoNumExpr + ")", num3 * twoNumVal);
-				map3Nums.put("(" + twoNumExpr + ")*" + num3, twoNumVal * num3);
-				map3Nums.put("" + num3 + "/(" + twoNumExpr + ")", num3 / twoNumVal);
-				map3Nums.put("(" + twoNumExpr + ")/" + num3, twoNumVal / num3);
+	private void helper(int[] nums, int k, boolean[] visited, int[] perm, Set<String> result) {
+		if (k == 4) {
+			buildResult(perm, result);
+		} else {
+			for (int i = 0; i < nums.length; i++) { 
+				if (visited[i] || i > 0 && nums[i] == nums[i - 1] && !visited[i - 1])
+					continue;
+				perm[k] = nums[i];
+				visited[i] = true;
+				helper(nums, k + 1, visited, perm, result);
+				visited[i] = false;
 			}
-			cands.add(i, num3);
 		}
 	}
-	private Map<String, Double> enum2Nums(int num1, int num2, Map<String, Double> map2Nums) {
-		Map<String, Double> map = new HashMap<String, Double>();
-		map.put("" + num1 + "+" + num2, (double)num1 + num2);
-		map.put("" + num2 + "+" + num1, (double)num2 + num1);
-		map.put("" + num1 + "-" + num2, (double)num1 - num2);
-		map.put("" + num2 + "-" + num1, (double)num2 - num1);
-		map.put("" + num1 + "*" + num2, (double)num1 * num2);
-		map.put("" + num2 + "*" + num1, (double)num2 * num1);
-		map.put("" + num1 + "/" + num2, (double)num1 / num2);
-		map.put("" + num2 + "/" + num1, (double)num2 / num1);
-		return map;
+	private void buildResult(int[] perm, Set<String> result) {
+		enum22(perm, result);
+		enum1_3(perm[0], enum3Nums(perm[1], perm[2], perm[3]), result);
+		enum3_1(enum3Nums(perm[0], perm[1], perm[2]), perm[3], result);
 	}
-	
-	private void eval(int num4, Map<String, Double> map2Nums, Map<String, Double> map3Nums, List<String> result) {
-		String num4Str = String.valueOf(num4);
-		for (String A : map2Nums.keySet()) {
-			double valA = map2Nums.get(A);
-			for (String B : map2Nums.keySet()) {
-				if (A.equals(B))
-					continue;
-				double valB = map2Nums.get(B);
+	private void enum22(int[] perm, Set<String> result) {
+		Map<String, Double> map1 = enum2Nums(perm[0], perm[1]);
+		Map<String, Double> map2 = enum2Nums(perm[2], perm[3]);
+		for (String A : map1.keySet()) {
+			double valA = map1.get(A);
+			for (String B : map2.keySet()) {
+				double valB = map2.get(B);
 				if (Math.abs(valA + valB - 24) < epsilon) {
 					result.add("(" + A + ")+(" + B + ")");
-					result.add("(" + B + ")+(" + A + ")");
 				}
 				if (Math.abs(valA - valB - 24) < epsilon) {
 					result.add("(" + A + ")-(" + B + ")");
-					result.add("(" + B + ")-(" + A + ")");
 				}
 				if (Math.abs(valA * valB - 24) < epsilon) {
 					result.add("(" + A + ")*(" + B + ")");
-					result.add("(" + B + ")*(" + A + ")");
 				}
 				if (Math.abs(valA / valB - 24) < epsilon) {
 					result.add("(" + A + ")/(" + B + ")");
-					result.add("(" + B + ")/(" + A + ")");
 				}
 			}
 		}
-			
+	}
+	private Map<String, Double> enum3Nums(int num1, int num2, int num3) {
+		Map<String, Double> map3Nums = new HashMap<>();
+		Map<String, Double> map2Nums = enum2Nums(num1, num2); 
+		for (String twoNumExpr : map2Nums.keySet()) {
+			double twoNumVal = map2Nums.get(twoNumExpr);
+			map3Nums.put("(" + twoNumExpr + ")+" + num3, twoNumVal + num3);
+			map3Nums.put("(" + twoNumExpr + ")-" + num3, twoNumVal - num3);
+			map3Nums.put("(" + twoNumExpr + ")*" + num3, twoNumVal * num3);
+			map3Nums.put("(" + twoNumExpr + ")/" + num3, twoNumVal / num3);
+		}
+		map2Nums = enum2Nums(num2, num3);
+		for (String twoNumExpr : map2Nums.keySet()) {
+			double twoNumVal = map2Nums.get(twoNumExpr);
+			map3Nums.put("" + num1 + "+(" + twoNumExpr + ")", num1 + twoNumVal);
+			map3Nums.put("" + num1 + "-(" + twoNumExpr + ")", num1 - twoNumVal);
+			map3Nums.put("" + num1 + "*(" + twoNumExpr + ")", num1 * twoNumVal);
+			map3Nums.put("" + num1 + "/(" + twoNumExpr + ")", num1 / twoNumVal);
+		}
+		
+		return map3Nums;
+	}
+	private Map<String, Double> enum2Nums(int num1, int num2) {
+		Map<String, Double> map2Nums = new HashMap<>();
+		map2Nums.put("" + num1 + "+" + num2, (double)num1 + num2);
+		map2Nums.put("" + num1 + "-" + num2, (double)num1 - num2);
+		map2Nums.put("" + num1 + "*" + num2, (double)num1 * num2);
+		map2Nums.put("" + num1 + "/" + num2, (double)num1 / num2);
+		return map2Nums;
+	}
+	private void enum3_1(Map<String, Double> map3Nums, int num4, Set<String> result) {
+		String num4Str = String.valueOf(num4);
+		for (String threeNumsExpr : map3Nums.keySet()) {
+			double threeNumsVal = map3Nums.get(threeNumsExpr);
+			if (Math.abs(num4 + threeNumsVal - 24) < epsilon) {
+				result.add("(" + threeNumsExpr + ")+" + num4Str); 
+			}
+			if (Math.abs(threeNumsVal - num4 - 24) < epsilon) {
+				result.add("(" + threeNumsExpr + ")-" + num4Str);
+			}
+			if (Math.abs(num4 * threeNumsVal - 24) < epsilon) {
+				result.add("(" + threeNumsExpr + ")*" + num4Str);
+			}
+			if (Math.abs(threeNumsVal / num4 - 24) < epsilon) {
+				result.add("(" + threeNumsExpr + ")/" + num4Str);
+			}
+		}
+	}
+	private void enum1_3(int num4,Map<String, Double> map3Nums, Set<String> result) {
+		String num4Str = String.valueOf(num4);
 		for (String threeNumsExpr : map3Nums.keySet()) {
 			double threeNumsVal = map3Nums.get(threeNumsExpr);
 			if (Math.abs(num4 + threeNumsVal - 24) < epsilon) {
