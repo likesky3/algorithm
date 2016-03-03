@@ -3,10 +3,8 @@ package stack;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /** how many possible solutions
  * Given 4 numbers, print all expressions getting result 24 using +, -, *, /, (, ).
@@ -37,17 +35,15 @@ public class Get24_2 {
 		Arrays.sort(nums);
 		boolean[] visited = new boolean[4];
 		int[] perm = new int[nums.length];
-		Set<String> result = new HashSet<>();
+		List<String> result = new ArrayList<>();
 		helper(nums, 0, visited, perm, result);
 		for (String s : result) {
 			System.out.println(s);
 		}
-		List<String> resultList = new ArrayList<>();
-		resultList.addAll(result);
-		return resultList;
+		return result;
 	}
 	
-	private void helper(int[] nums, int k, boolean[] visited, int[] perm, Set<String> result) {
+	private void helper(int[] nums, int k, boolean[] visited, int[] perm, List<String> result) {
 		if (k == 4) {
 			buildResult(perm, result);
 		} else {
@@ -61,12 +57,12 @@ public class Get24_2 {
 			}
 		}
 	}
-	private void buildResult(int[] perm, Set<String> result) {
+	private void buildResult(int[] perm, List<String> result) {
 		enum22(perm, result);
 		enum1_3(perm[0], enum3Nums(perm[1], perm[2], perm[3]), result);
 		enum3_1(enum3Nums(perm[0], perm[1], perm[2]), perm[3], result);
 	}
-	private void enum22(int[] perm, Set<String> result) {
+	private void enum22(int[] perm, List<String> result) {
 		Map<String, Double> map1 = enum2Nums(perm[0], perm[1]);
 		Map<String, Double> map2 = enum2Nums(perm[2], perm[3]);
 		for (String A : map1.keySet()) {
@@ -117,7 +113,7 @@ public class Get24_2 {
 		map2Nums.put("" + num1 + "/" + num2, (double)num1 / num2);
 		return map2Nums;
 	}
-	private void enum3_1(Map<String, Double> map3Nums, int num4, Set<String> result) {
+	private void enum3_1(Map<String, Double> map3Nums, int num4, List<String> result) {
 		String num4Str = String.valueOf(num4);
 		for (String threeNumsExpr : map3Nums.keySet()) {
 			double threeNumsVal = map3Nums.get(threeNumsExpr);
@@ -135,38 +131,23 @@ public class Get24_2 {
 			}
 		}
 	}
-	private void enum1_3(int num4,Map<String, Double> map3Nums, Set<String> result) {
+	private void enum1_3(int num4,Map<String, Double> map3Nums, List<String> result) {
 		String num4Str = String.valueOf(num4);
 		for (String threeNumsExpr : map3Nums.keySet()) {
 			double threeNumsVal = map3Nums.get(threeNumsExpr);
 			if (Math.abs(num4 + threeNumsVal - 24) < epsilon) {
 				result.add(num4Str + "+(" + threeNumsExpr + ")");
-				result.add("(" + threeNumsExpr + ")+" + num4Str); // need or not?
 			}
 			if (Math.abs(num4 - threeNumsVal - 24) < epsilon) {
 				result.add(num4Str + "-(" + threeNumsExpr + ")");
 			}
-			if (Math.abs(threeNumsVal - num4 - 24) < epsilon) {
-				result.add("(" + threeNumsExpr + ")-" + num4Str);
-			}
 			if (Math.abs(num4 * threeNumsVal - 24) < epsilon) {
 				result.add(num4Str + "*(" + threeNumsExpr + ")");
-				result.add("(" + threeNumsExpr + ")*" + num4Str);
 			}
 			if (Math.abs(num4 / threeNumsVal - 24) < epsilon) {
 				result.add(num4Str + "/(" + threeNumsExpr + ")");
 			}
-			if (Math.abs(threeNumsVal / num4 - 24) < epsilon) {
-				result.add("(" + threeNumsExpr + ")/" + num4Str);
-			}
 		}
 	}
 	private static double epsilon = 0.000001;
-	private static Set<String> operatos = new HashSet<>();
-	static {
-		operatos.add("+");
-		operatos.add("-");
-		operatos.add("*");
-		operatos.add("/");
-	}
 }
