@@ -1,7 +1,6 @@
 package stack;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -24,15 +23,34 @@ use whatever method(select two numbers, one operation) to make it K-1 numbers.
 
 Hard points:
 1. How do I get (a(bc))d ? - by swap d(a(bc)) in enum2Nums()
+2. Not enum the whole solutions.
+Fail case:
+for {3, 1, 2, 5, 4}, miss (((1-2)+5)+4)*3, ((1-(2-5))+4)*3
+这个bug 是受buildResult的实现思路所限，它的每一层都是a(...)或者(ab)(...)的形式，
+对于四个数abcd时只能枚举出a(bcd)或者(ab)(cd)形式，而漏掉了((ab)c)d这种，对于五个数将遗漏更多。
+这题对于4个数得到24有效，但更多个数构成24就存在bug，不具有扩展性。
+这其实算是hard coding导致的bug，从这题体会到hard coding就是使用代码本身在枚举可能的情况，这容易造成遗漏。
 */
 public class Get24_2_2 {
 
     public static void main(String[] args) {
-        Get24_2_2 obj = new Get24_2_2();
-        obj.get24(new int[]{2, 2, 6, 6});
-        obj.get24(new int[]{3, 8, 8, 3, 10, 7});
+//        Get24_2_2 obj = new Get24_2_2();
+//        obj.get24(new int[]{2, 2, 6, 6});
+//        obj.get24(new int[]{1,2,3,4,5});
+//        obj.get24(new int[]{3, 8, 8, 3, 10, 7});
+        
+        debug();
     }
     
+    public static void debug() {
+        Get24_2_2 obj = new Get24_2_2();
+        Set<String> result = new HashSet<>();
+        obj.buildResult(new int[]{3, 1, 2, 5, 4}, 0, result);
+        System.out.println(result.size());
+        for (String str : result) {
+            System.out.println(str);
+        }
+    }
     public List<String> get24(int[] nums) {
         int n = nums.length;
         boolean[] visited = new boolean[n];
@@ -40,12 +58,14 @@ public class Get24_2_2 {
         helper(nums, 0, visited, new int[n], resultSet);
         List<String> result = new ArrayList<>();
         result.addAll(resultSet);
-        for (String s : result) {
-            System.out.println(s);
-        }
-        System.out.println();
+//        for (String s : result) {
+//            System.out.println(s);
+//        }
+//        System.out.println();
+        System.out.println(result.size());
         return result;
     }
+    
     private void helper(int[] nums, int k, boolean[] visited, int[] items, Set<String> result) {
         if (k == nums.length) {
             buildResult(items, 0, result);
@@ -88,6 +108,7 @@ public class Get24_2_2 {
         }
         return map;
     }
+    
     private void enum2Nums(double num1, double num2, String num1Str, String num2Str,
             Map<String, Double> map, boolean isLastStep, Set<String> result) {
         for (String op : operators) {
@@ -107,6 +128,7 @@ public class Get24_2_2 {
             }
         }
     }
+    
     private double eval2Nums(double num1, double num2, String op) {
         switch (op) {
         case "+":
@@ -125,7 +147,6 @@ public class Get24_2_2 {
         }
     }
     
-    private static double epsilon = 0.000001;
     private static Set<String> operators = new HashSet<>();
     static {
         operators.add("+");
