@@ -23,7 +23,7 @@ Key idea: if you have K numbers,
 use whatever method(select two numbers, one operation) to make it K-1 numbers.
 
 Hard points:
-1. How do I get (a(bc))d ?
+1. How do I get (a(bc))d ? - by swap d(a(bc)) in enum2Nums()
 */
 public class Get24_2_2 {
 
