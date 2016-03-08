@@ -51,6 +51,43 @@ public class Get24_2_3 {
         System.out.println(result.size());
         return result;
     }
+    // modified according to the suggestions of cyb, create new nums & expressions in each recursion to avoid error in remove,
+    // and modify loop to make code more elegant.
+    private void buildResult2(List<Double> nums, List<String> expressions, Set<String> result) {
+        if (nums.size() == 1) {
+            if (Math.abs(nums.get(0) - 24) < 1e-6)
+                result.add(expressions.get(0));
+        } else {
+            int n = nums.size();
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                	if (i == j) continue;
+                    for (String op :operators) {
+                        double num1 = nums.get(i), num2 = nums.get(j);
+                        String num1str = expressions.get(i), num2str = expressions.get(j);
+                        double ans = eval2Nums(num1, num2, op);
+                        List<Double> numsNew = new ArrayList<>();
+                        for (int k = 0; k < nums.size(); k++) {
+                        	if (Math.abs(nums.get(k) - num1) >= 1e-9 
+                        			&& Math.abs(nums.get(k) - num2) >= 1e-9) {
+                        		numsNew.add(nums.get(k));
+                        	}
+                        }
+                        numsNew.add(ans);
+                        List<String> expressionsNew = new ArrayList<>();
+                        for (int k = 0; k < expressions.size(); k++) {
+                        	if (!expressions.get(k).equals(num1str)
+                        			&& !expressions.get(k).equals(num2str)) {
+                        		expressionsNew.add(expressions.get(k));
+                        	}
+                        }
+                        expressionsNew.add("(" + num1str + op + num2str + ")");
+                        buildResult(numsNew, expressionsNew, result);
+                    }
+                }
+            }
+        }
+    }
     
     private void buildResult(List<Double> nums, List<String> expressions, Set<String> result) {
         if (nums.size() == 1) {
