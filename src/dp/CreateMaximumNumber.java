@@ -1,3 +1,8 @@
+package dp;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class CreateMaximumNumber {
     // greedy, time: O((m + n) * k * k), space: O(k)
     public int[] maxNumber(int[] nums1, int[] nums2, int k) {

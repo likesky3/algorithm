@@ -3,7 +3,7 @@
 	<classpathentry excluding="src/" kind="src" path=""/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/Users/zhoulinlin/Downloads/eclipse/plugins/org.junit_4.11.0.v201303080030/junit.jar"/>
-	<classpathentry kind="lib" path="/Users/zhoulinlin/Downloads/eclipse/plugins/org.hamcrest.core_1.3.0.v201303031735.jar"/>
+	<classpathentry kind="lib" path="/Users/linlinzhou/Documents/workspace/algorithm/lib/junit-4.12.jar"/>
+	<classpathentry kind="lib" path="/Users/linlinzhou/Documents/workspace/algorithm/lib/hamcrest-core-1.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -1,3 +1,8 @@
+package dfs;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
 ref: https://leetcode.com/discuss/81478/easy-short-concise-and-fast-java-dfs-3-ms-solution
 我们都知道如何验证括号串是否平衡，一个简单办法就是使用一个计数器，遇到‘（’ 加一， 遇到‘）’减一，
@@ -14,11 +19,11 @@ ref: https://leetcode.com/discuss/81478/easy-short-concise-and-fast-java-dfs-3-m
 一个更聪明的办法是，反转字符串，重用相同的代码。
 */
 
-public class Solution {
+public class RemoveInvalidParentheis {
     public List<String> removeInvalidParentheses(String s) {
         List<String> res = new ArrayList<String>();
         if (s == null) return res;
-        recur(s, new char[]{'(', ')'}, 0, res);
+        recur(s, new char[]{'(', ')'}, 0, 0, res);
         return res;
     }
     private void recur(String s, char[] pair, int last_i, int last_j, List<String> res) {
