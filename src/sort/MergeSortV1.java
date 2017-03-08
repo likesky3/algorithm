@@ -6,8 +6,9 @@ public class MergeSortV1 {
 
 	public static void main(String[] args) {
 		MergeSortV1 obj = new MergeSortV1();
-//		System.out.println(obj.split("A1B2D3C4EF"));
-		System.out.println(obj.mixOneByOne("ABCDEF123456"));
+		// System.out.println(obj.split("A1B2D3C4EF"));
+		int[] array = {1, 2, 3, 4, 5, 6};
+		WhiteBoard.print(obj.reorder(array));
 	}
 
 	// A1B2C3D4 -> ABCD1234
@@ -64,8 +65,8 @@ public class MergeSortV1 {
 	public String mixOneByOne(String s) {
 		if (s == null || s.length() == 0) {
 			return "";
-	}
-	char[] array = s.toCharArray();
+		}
+		char[] array = s.toCharArray();
 		mergeSortMix(array, 0, array.length - 1);
 		return new String(array);
 	}
@@ -76,18 +77,20 @@ public class MergeSortV1 {
 		}
 		int mid = left + (right - left) / 2;
 		int quarterLen = (right - left + 1) / 4;
-		transfer(array, mid - quarterLen + 1, mid, mid + quarterLen); // special attention  !!!
+		transfer(array, mid - quarterLen + 1, mid, mid + quarterLen); // special
+																		// attention
+																		// !!!
 		mergeSortMix(array, left, mid);
 		mergeSortMix(array, mid + 1, right);
 	}
 
 	// AB12 -> 12AB, by reversing 3 times
 	private void transfer(char[] array, int left, int mid, int right) {
-//		System.out.println("transfer start...");
+		// System.out.println("transfer start...");
 		reverse(array, left, right);
 		reverse(array, left, mid);
 		reverse(array, mid + 1, right);
-//		System.out.println("transfer end...");
+		// System.out.println("transfer end...");
 	}
 
 	private void reverse(char[] array, int left, int right) {
@@ -95,6 +98,48 @@ public class MergeSortV1 {
 			char tmp = array[right];
 			array[right--] = array[left];
 			array[left++] = tmp;
+		}
+	}
+
+	public int[] reorder(int[] array) {
+		recur(array, 0, array.length - 1);
+		return array;
+	}
+
+	private void recur(int[] array, int left, int right) {
+		int n = right - left + 1;
+		if (n < 4) {
+			return;
+		}
+		if (n % 2 == 1) {
+			recur(array, left, right - 1);
+			return;
+		}
+		
+		int unit = 0;
+		if (n % 4 == 0) {
+			unit = n / 4;
+		} else {
+			unit = (n - 2) / 4;
+		}
+		
+		reverse(array, left + unit, right - unit);
+		reverse(array, left + unit, right - n / 2);
+		reverse(array, left + n / 2, right - unit);
+		if (n % 4 > 0) {
+			reverse(array, right - n / 2, left + n / 2);
+		}
+		recur(array, left, left + unit * 2 - 1);
+		recur(array, right - unit * 2 + 1, right);
+	}
+
+	private void reverse(int[] array, int i, int j) {
+		while (i < j) {
+			int tmp = array[i];
+			array[i] = array[j];
+			array[j] = tmp;
+			i++;
+			j--;
 		}
 	}
 }
