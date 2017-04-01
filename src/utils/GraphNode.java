@@ -1,6 +1,8 @@
 package utils;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 
 public class GraphNode {
@@ -23,10 +25,11 @@ public class GraphNode {
 	
 	public static class Edge {
 		public int dist;
-		public GraphNode neigh;
-		public Edge(int dist, GraphNode neigh) {
+		public GraphNode from, to;
+		public Edge(int dist, GraphNode from, GraphNode to) {
 			this.dist = dist;
-			this.neigh = neigh;
+			this.from = from;
+			this.to = to;
 		}
 	}
 }

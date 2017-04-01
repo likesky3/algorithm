@@ -1,5 +1,6 @@
 What's the interface used for?
-Because it supports the basic operations that would allow a client programmer to iterate over any kind of data structure.
+Because it supports the basic operations that would allow a client programmer 
+to iterate over any kind of data structure.
 
 迭代器模式
 假如有一个求和的函数sum，我们希望它能应用于链表，数组，二叉树等等不同的数据结构。

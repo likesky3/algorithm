@@ -1,15 +1,19 @@
 package stack;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.Stack;
 
+import utils.WhiteBoard;
+
 /** Interface Deque and its implementation (ArrayDeque, LinkedList) is more preferable than Stack
  * */
-public class SortStack {
+public class SortNumbersInThreeStacks {
 
 	public static void main(String[] args) {
-		SortStack obj = new SortStack();
+		SortNumbersInThreeStacks obj = new SortNumbersInThreeStacks();
 //		Stack<Integer> stack = new Stack<>();
 //		Random rand = new Random();
 //		for (int i = 0; i < 10; i++) {
@@ -83,52 +87,47 @@ public class SortStack {
 	}
 	
 	// Method 2: better idea, merge sort
-	public void sort(LinkedList<Integer> stack1) {
-		if (stack1 == null) {
-			return;
+	public int[] sort(Deque<Integer> nums) { 
+		Deque<Integer> s1 = new ArrayDeque<>();
+		Deque<Integer> s2 = new ArrayDeque<>();
+		mergeSort(nums, nums.size(), s1, s2);
+		int[] res = new int[nums.size()];
+		for (int i = 0; i < res.length; i++) {
+			res[i] = nums.pollFirst();
 		}
-		LinkedList<Integer> stack2 = new LinkedList<>();
-		LinkedList<Integer> stack3 = new LinkedList<>();
-		mergeSort(stack1, stack2, stack3, stack1.size());
+		return res;
 	}
-	public void mergeSort(LinkedList<Integer> s1, LinkedList<Integer> s2, LinkedList<Integer> s3, int length) {
-		if (length <= 1) {
+	
+	private void mergeSort(Deque<Integer> s1, int len1, Deque<Integer> s2,  Deque<Integer> s3) {
+		if (len1 == 1) {
 			return;
 		}
-		int halfLen1 = length / 2;
-		int halfLen2 = length - length / 2;
-		// move half size of s1 to s2
-		for (int i = 0; i < halfLen1; i++) {
-			s2.push(s1.pop()); // s2.offerFirst(s1.pollFirst())
+		// pop half size of elements from s1 to s2
+		for (int i = 0; i < len1 / 2; i++) {
+			s2.offerFirst(s1.pollFirst());
 		}
-		// recursively call mergeSort to sort s1 and s2
-		mergeSort(s1, s3, s2, halfLen2);
-		mergeSort(s2, s3, s1, halfLen1);
-		// merge sorted s1 and s2, store the result in s3
-		int i = 0, j = 0;
-		while (i < halfLen2 && j < halfLen1) {
-			if (s1.peek() < s2.peek()) {
-				s3.push(s1.pop());
-				i++;
+		// recursively sort s1, s2
+		mergeSort(s1, len1 - len1 / 2, s2, s3);
+		mergeSort(s2, len1 / 2, s1, s3);
+		// merge sorted s1, s2 into s3
+		merge(s1, len1 - len1 / 2, s2, len1 / 2, s3);
+		// move elements back to s1
+		while (!s3.isEmpty()) {
+			s1.offerFirst(s3.pollFirst());
+		}
+	}
+	
+	private void merge(Deque<Integer> s1, int len1, Deque<Integer> s2, int len2, Deque<Integer> s3) {
+		while (len1 > 0 || len2 > 0) {
+			if (len2 == 0 || len1 > 0 && s1.peekFirst() < s2.peekFirst()) {
+				s3.offerFirst(s1.pollFirst());
+				len1--;
 			} else {
-				s3.push(s2.pop());
-				j++;
+				s3.offerFirst(s2.pollFirst());
+				len2--;
 			}
 		}
-		while (i < halfLen2) {
-			s3.push(s1.pop());
-			i++;
-		}
-		while (j < halfLen1) {
-			s3.push(s2.pop());
-			j++;
-		}
-		// after merging, elements are in descending order from top to botton in s3,
-		// pop elements back into s1 from s3, so that they are in ascending order from top to bottom
-		for (i = 0; i < length; i++) {
-			s1.push(s3.pop());
-		}
-	}
+	}	
 	
 	// use 1 extra stack
 }
