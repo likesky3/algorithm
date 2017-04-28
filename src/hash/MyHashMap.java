@@ -6,9 +6,9 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-public class HashMap<K, V> {
+public class MyHashMap<K, V> {
 	public static void main(String[] args) {
-		HashMap<String, Integer> map = new HashMap<>();
+		MyHashMap<String, Integer> map = new MyHashMap<>();
 		System.out.println("test put/get/remove");
 		for (int i = 0; i < 10; i++) {
 			map.put("" + i, i);
@@ -19,14 +19,14 @@ public class HashMap<K, V> {
 		map.remove("3");
 		System.out.println("test remove 3");
 		System.out.println("test HashMap.entrySet");
-		for (HashMap.Entry<String, Integer> e : map.entrySet()) {
+		for (MyHashMap.Entry<String, Integer> e : map.entrySet()) {
 			System.out.printf("%s=%d\n", e.getKey(), e.getValue());
 		}
 		System.out.println("test rehash");
 		for (int i = 10; i < 20; i++) {
 			map.put("" + i, i);
 		}
-		for (HashMap.Entry<String, Integer> e : map.entrySet()) {
+		for (MyHashMap.Entry<String, Integer> e : map.entrySet()) {
 			System.out.printf("%s=%d\n", e.getKey(), e.getValue());
 		}
 	}
@@ -67,7 +67,7 @@ public class HashMap<K, V> {
 	private Set<Entry<K, V>> entrySet;
 
 	@SuppressWarnings("unchecked")
-	public HashMap(int capacity, float loadFactor) {
+	public MyHashMap(int capacity, float loadFactor) {
 		buckets = (Entry<K, V>[])new Entry[capacity]; //>< note type transformation here
 		this.loadFactor = loadFactor;
 		keySet = new HashSet<>();
@@ -75,7 +75,7 @@ public class HashMap<K, V> {
 		entrySet = new HashSet<>();
 	}
 
-	public HashMap() {
+	public MyHashMap() {
 		this(DEFAULT_CAPACITY, DEFAULT_LOAD_FACTOR);
 	}
 

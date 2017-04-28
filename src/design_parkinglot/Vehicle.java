@@ -1,4 +1,4 @@
-package design;
+package design_parkinglot;
 
 public class Vehicle {
 	final VehicleSize size;

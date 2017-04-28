@@ -13,6 +13,7 @@
 max/min:栈顶取硬币问题；最小调整代价
 组合数：买水果问题
 判断：interleaving string
+partition problem: input如果有负数，则dp[][]两个维度顺序调整会影响计算，dp[sum][range]无法正确计算，dp[range][sum]ok，因为sum不是单调的，可能忽大忽小，而range是单调的
 
 @调度问题
 sell & buy stock （使用两个dp变量提供效率）

@@ -18,6 +18,7 @@ public class TreeNode {
 		right = null;
 	}
 	
+	
 	public static void printSerializedTree(TreeNode root) {
 		System.out.println(serialize(root));
 	}
@@ -57,6 +58,9 @@ public class TreeNode {
             return null;
         }
         String[] array = data.split(",");
+        for (int i = 0; i < array.length; i++) {
+        	array[i] = array[i].trim();
+        }
 		TreeNode root = new TreeNode(Integer.parseInt(array[0]));
 		TreeNode curr = root;
 		List<TreeNode> nodes = new ArrayList<>();

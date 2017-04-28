@@ -1,4 +1,4 @@
-package design;
+package design_parkinglot;
 
 import java.util.*;
 

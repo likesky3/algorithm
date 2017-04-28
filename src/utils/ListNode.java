@@ -16,4 +16,17 @@ public class ListNode {
 		}
 		return dummy.next;
 	}
+	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(value);
+		ListNode tmp = next; // use tmp variable so we don't change next
+		while (tmp != null) {
+			sb.append(", ").append(tmp.value);
+			tmp = tmp.next;
+		}
+		return sb.toString();
+	}
+	
 }

@@ -1,4 +1,4 @@
-package design;
+package design_parkinglot;
 
 public class ParkingTicket {
 	private static final float FEE_EACH_MINUTE = 0.05F; 

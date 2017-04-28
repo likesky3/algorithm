@@ -1,4 +1,4 @@
-package design;
+package design_parkinglot;
 
 public enum VehicleSize {
 	COMPACT(10), 
@@ -7,7 +7,7 @@ public enum VehicleSize {
 	DISABLED(40);
 	
 	private final int size;
-	VehicleSize(int size) { // ><
+	VehicleSize(int size) { // >< enum 
 		this.size = size;
 	}
 	public int getSize() {
